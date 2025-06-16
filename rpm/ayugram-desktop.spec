@@ -12,7 +12,7 @@
 
 Name: ayugram-desktop
 Version: 5.14.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # Application and 3rd-party modules licensing:
 # * Telegram Desktop - GPL-3.0-or-later with OpenSSL exception -- main tarball;
@@ -191,5 +191,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_metainfodir}/*.metainfo.xml
 
 %changelog
+* Mon Jun 17 2025 Oleg XWOKU <136835599+XWOKU@users.noreply.github.com> - 5.14.3-2
+- Rebuild (openh264)
+
 * Mon Jun 16 2025 Oleg XWOKU <136835599+XWOKU@users.noreply.github.com> - 5.14.3
 - Initial build
