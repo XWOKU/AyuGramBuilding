@@ -1,0 +1,42 @@
+name: Create new ayugram release with all submodules included
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          path: 'Repor'
+          ref: 'main'  # Explicitly checkout the main branch
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y gh git
+
+      - name: Clone ayugram-desktop repo
+        run: |
+          git clone --recursive https://github.com/AyuGram/AyuGramDesktop.git -b ${{github.event.release.tag_name}} AyuGramDesktop-${{github.event.release.tag_name}}-full
+          rm -rf AyuGramDesktop-${{github.event.release.tag_name}}-full/.git
+
+      - name: Packing ayugram-desktop into tar.gz archive
+        run: |
+          tar -cvf AyuGramDesktop-${{github.event.release.tag_name}}-full.tar.gz AyuGramDesktop-${{github.event.release.tag_name}}-full/
+
+      - name: Upload to release
+        run: |
+          cd Repor
+          gh release upload ${{github.event.release.tag_name}} ../AyuGramDesktop-${{github.event.release.tag_name}}-full.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use secrets.GITHUB_TOKEN
+        shell: bash
