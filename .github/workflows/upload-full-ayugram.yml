@@ -1,4 +1,4 @@
-name: Create new ayugram release with all submodules included
+name: Create new ayugram release with all submodules included and trigger copr webhook
 
 on:
   release:
@@ -22,7 +22,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt install -y gh git
+          sudo apt install -y gh git curl
 
       - name: Clone ayugram-desktop repo
         run: |
@@ -40,3 +40,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use secrets.GITHUB_TOKEN
         shell: bash
+
+      - name: Trigger copr webhook
+        if: ${{ success() }}
+        run: |
+          curl -X POST ${{ secrets.WebHook }}
