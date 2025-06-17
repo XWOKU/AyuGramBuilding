@@ -16,6 +16,7 @@ Release: 2%{?dist}
 
 # Application and 3rd-party modules licensing:
 # * Telegram Desktop - GPL-3.0-or-later with OpenSSL exception -- main tarball;
+# * Ayugram Desktop - GPL-3.0-or-later with OpenSSL exception -- main tarball;
 # * tg_owt - BSD-3-Clause AND BSD-2-Clause AND Apache-2.0 AND MIT AND LicenseRef-Fedora-Public-Domain -- static dependency;
 # * rlottie - LGPL-2.1-or-later AND AND FTL AND BSD-3-Clause -- static dependency;
 # * cld3  - Apache-2.0 -- static dependency;
