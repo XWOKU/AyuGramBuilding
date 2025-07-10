@@ -82,7 +82,6 @@ BuildRequires: pkgconfig(xcb)
 BuildRequires: pkgconfig(xcb-keysyms)
 BuildRequires: pkgconfig(xcb-record)
 BuildRequires: pkgconfig(xcb-screensaver)
-BuildRequires: pkgconfig(fcitx5-qt)
 
 BuildRequires: boost-devel
 BuildRequires: cmake
@@ -147,7 +146,7 @@ cmake --install %{_builddir}/tdlib/build
 %autosetup -n %{appname}-v%{version}-full -p1
 
 # Unbundling libraries... except minizip
-rm -rf Telegram/ThirdParty/{QR,dispatch,expected,fcitx-qt5,fcitx5-qt,hime,hunspell,jemalloc,kimageformats,lz4,nimf,range-v3,xxHash}
+rm -rf Telegram/ThirdParty/{QR,dispatch,expected,fcitx-qt5,hime,hunspell,jemalloc,kimageformats,lz4,nimf,range-v3,xxHash}
 # Fix minizip requrement
 # sed -i 's|2.0.0|4.0.0|' cmake/external/minizip/CMakeLists.txt
 
