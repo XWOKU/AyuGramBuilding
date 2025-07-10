@@ -122,7 +122,6 @@ Provides: ayugram%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 # Virtual provides for bundled libraries...
 Provides: bundled(cld3) = 3.0.13~gitb48dc46
 Provides: bundled(kf5-kcoreaddons) = 5.106.0
-Provides: bundled(libtgvoip) = 2.4.4~git7c46f4c
 Provides: bundled(open-sans-fonts) = 1.10
 Provides: bundled(plasma-wayland-protocols) = 1.6.0
 Provides: bundled(rlottie) = 0~git8c69fc2
