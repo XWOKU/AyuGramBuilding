@@ -82,6 +82,7 @@ BuildRequires: pkgconfig(xcb)
 BuildRequires: pkgconfig(xcb-keysyms)
 BuildRequires: pkgconfig(xcb-record)
 BuildRequires: pkgconfig(xcb-screensaver)
+BuildRequires: pkgconfig(fcitx5-qt)
 
 BuildRequires: boost-devel
 BuildRequires: cmake
