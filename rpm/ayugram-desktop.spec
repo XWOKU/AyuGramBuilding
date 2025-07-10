@@ -11,8 +11,8 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name: ayugram-desktop
-Version: 5.14.3
-Release: 2%{?dist}
+Version: 5.16.3
+Release: 1%{?dist}
 
 # Application and 3rd-party modules licensing:
 # * Telegram Desktop - GPL-3.0-or-later with OpenSSL exception -- main tarball;
@@ -60,7 +60,6 @@ BuildRequires: pkgconfig(glibmm-2.68) >= 2.76.0
 BuildRequires: pkgconfig(gobject-2.0)
 BuildRequires: pkgconfig(gobject-introspection-1.0)
 BuildRequires: pkgconfig(hunspell)
-BuildRequires: pkgconfig(jemalloc)
 BuildRequires: pkgconfig(libavcodec)
 BuildRequires: pkgconfig(libavfilter)
 BuildRequires: pkgconfig(libavformat)
@@ -72,9 +71,6 @@ BuildRequires: pkgconfig(libpulse)
 BuildRequires: pkgconfig(libswresample)
 BuildRequires: pkgconfig(libswscale)
 BuildRequires: pkgconfig(libxxhash)
-%if 0%{?fedora} < 41
-BuildRequires: pkgconfig(openssl)
-%endif
 BuildRequires: pkgconfig(opus)
 BuildRequires: pkgconfig(protobuf)
 BuildRequires: pkgconfig(protobuf-lite)
@@ -111,8 +107,11 @@ BuildRequires: zlib-devel
 BuildRequires: gcc-c++
 BuildRequires: pkgconfig(openh264)
 BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: libjxl-devel
+BuildRequires: libavif-devel
 
 Requires: hicolor-icon-theme
+Requires: libjxl%{?_isa}
 Requires: qt6-qtimageformats%{?_isa}
 Requires: webkitgtk6.0%{?_isa}
 
@@ -149,7 +148,6 @@ cmake --install %{_builddir}/tdlib/build
 
 # Unbundling libraries... except minizip
 rm -rf Telegram/ThirdParty/{QR,dispatch,expected,fcitx-qt5,fcitx5-qt,hime,hunspell,jemalloc,kimageformats,lz4,nimf,range-v3,xxHash}
-
 # Fix minizip requrement
 # sed -i 's|2.0.0|4.0.0|' cmake/external/minizip/CMakeLists.txt
 
@@ -192,7 +190,10 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_metainfodir}/*.metainfo.xml
 
 %changelog
-* Mon Jun 17 2025 Oleg XWOKU <136835599+XWOKU@users.noreply.github.com> - 5.14.3-2
+* Thu Jul 10 2025 Oleg XWOKU <136835599+XWOKU@users.noreply.github.com> - 5.16.3-1
+- Upgrade ayugram-desktop to 5.16.3
+
+* Tue Jun 17 2025 Oleg XWOKU <136835599+XWOKU@users.noreply.github.com> - 5.14.3-2
 - Rebuild (openh264)
 
 * Mon Jun 16 2025 Oleg XWOKU <136835599+XWOKU@users.noreply.github.com> - 5.14.3
